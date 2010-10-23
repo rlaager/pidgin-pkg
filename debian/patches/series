@@ -2,3 +2,4 @@ msn_crash.patch
 python26.patch
 libnssckbi_path.patch
 baseXX_decode_error_handling_2.patch
+cyrus_sasl_crash.patch

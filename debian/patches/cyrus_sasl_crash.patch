@@ -1,0 +1,76 @@
+Description: Fix a crash when multiple accounts are simultaneously performing
+ SASL authentication when built with Cyrus SASL support.
+#
+#
+# patch "libpurple/protocols/jabber/auth_cyrus.c"
+#  from [de85c1d927c318ab37dbaae05f4823749ff6da3b]
+#    to [d2bfd74ef5947eedc6fc7b489e53cf43b57f6f41]
+# 
+# patch "libpurple/protocols/jabber/jabber.c"
+#  from [bad7f0bf46ec064f14facd6a467eb06918bb7d27]
+#    to [9c1f4dbfa2d4aec4f3eaa4108bf6661902317394]
+# 
+# patch "libpurple/protocols/jabber/jabber.h"
+#  from [480e97195d8da8a1120c4f5cb1360b77c9a3d24b]
+#    to [1c6cf16631a65e79ba7fff3147fcbfba98ed7c05]
+#
+============================================================
+Index: pidgin/libpurple/protocols/jabber/auth_cyrus.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/jabber/auth_cyrus.c
++++ pidgin/libpurple/protocols/jabber/auth_cyrus.c
+@@ -94,7 +94,6 @@ static int jabber_sasl_cb_secret(sasl_co
+ 	PurpleAccount *account;
+ 	const char *pw;
+ 	size_t len;
+-	static sasl_secret_t *x = NULL;
+ 
+ 	account = purple_connection_get_account(js->gc);
+ 	pw = purple_account_get_password(account);
+@@ -103,15 +102,15 @@ static int jabber_sasl_cb_secret(sasl_co
+ 		return SASL_BADPARAM;
+ 
+ 	len = strlen(pw);
+-	x = (sasl_secret_t *) realloc(x, sizeof(sasl_secret_t) + len);
+-
+-	if (!x)
++	/* TODO: This can probably be moved to glib's allocator */
++	js->sasl_secret = malloc(sizeof(sasl_secret_t) + len);
++	if (!js->sasl_secret)
+ 		return SASL_NOMEM;
+ 
+-	x->len = len;
+-	strcpy((char*)x->data, pw);
++	js->sasl_secret->len = len;
++	strcpy((char*)js->sasl_secret->data, pw);
+ 
+-	*secret = x;
++	*secret = js->sasl_secret;
+ 	return SASL_OK;
+ }
+ 
+Index: pidgin/libpurple/protocols/jabber/jabber.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/jabber/jabber.c
++++ pidgin/libpurple/protocols/jabber/jabber.c
+@@ -1631,6 +1631,8 @@ void jabber_close(PurpleConnection *gc)
+ 	if(js->sasl_mechs)
+ 		g_string_free(js->sasl_mechs, TRUE);
+ 	g_free(js->sasl_cb);
++	/* Note: _not_ g_free.  See auth_cyrus.c:jabber_sasl_cb_secret */
++	free(js->sasl_secret);
+ #endif
+ 	g_free(js->serverFQDN);
+ 	while(js->commands) {
+Index: pidgin/libpurple/protocols/jabber/jabber.h
+===================================================================
+--- pidgin.orig/libpurple/protocols/jabber/jabber.h
++++ pidgin/libpurple/protocols/jabber/jabber.h
+@@ -206,6 +206,7 @@ struct _JabberStream
+ #ifdef HAVE_CYRUS_SASL
+ 	sasl_conn_t *sasl;
+ 	sasl_callback_t *sasl_cb;
++	sasl_secret_t *sasl_secret;
+ 	const char *current_mech;
+ 	int auth_fail_count;
+ 
