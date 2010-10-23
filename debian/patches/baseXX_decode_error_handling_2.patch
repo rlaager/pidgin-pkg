@@ -1,0 +1,197 @@
+Description: Fixes remote DoS in base64 code (CVE-2010-3711)
+#
+# old_revision [e71d42518d6fd45f106f148da376c43e3eb6b294]
+#
+# patch "pidgin/libpurple/ntlm.c"
+#  from [979ce84955ca402858c8ef4fdfb3f786da602d98]
+#    to [5e2ea0f873201d1fbfbdf92456e17a24c5e584ab]
+# 
+# patch "pidgin/libpurple/plugins/perl/common/Util.xs"
+#  from [5fba429dad716bc84040920e2431cb52ad0002b9]
+#    to [ac3d9ea652a79066c672e262d6f99d5949186a1a]
+# 
+# patch "pidgin/libpurple/protocols/jabber/auth_digest_md5.c"
+#  from [857c4e8e03d05e94a105e5763b7cd8eb5c758cc6]
+#    to [c32a82e931b9ae544229e5ec2d1d9d163ea4ef90]
+# 
+# patch "pidgin/libpurple/protocols/msn/slp.c"
+#  from [f8ab7fe26bd4244db9b4299ace03320a7ac8a799]
+#    to [25c7706a6a5125495ed1ddbf200d5961578c7beb]
+# 
+# patch "pidgin/libpurple/protocols/myspace/message.c"
+#  from [28bf0b70059bea825c40dd1a643fe2523f8fdd1f]
+#    to [ac0c77b3d62b820b3b9a4a74626fa693a8c202ee]
+# 
+# patch "pidgin/libpurple/protocols/oscar/clientlogin.c"
+#  from [582b716f959a2688537c5d581bf74971c8962a10]
+#    to [f66d45ff55ef44bed415ddbd25e47f2d60c8d5ea]
+# 
+# patch "pidgin/libpurple/protocols/qq/im.c"
+#  from [99d2868d5c8b67ab905ad128d0603f71af8bba50]
+#    to [6464068551bb1b7e76badb77a334719a595ebf71]
+# 
+# patch "pidgin/libpurple/protocols/yahoo/libymsg.c"
+#  from [ede49fc83fb4fba337d5bca27d26fa20595039b8]
+#    to [aedcc38fb75b9a99be6cb60666cd72a4e2376158]
+#
+============================================================
+Index: pidgin/libpurple/protocols/yahoo/libymsg.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/yahoo/libymsg.c
++++ pidgin/libpurple/protocols/yahoo/libymsg.c
+@@ -317,7 +317,7 @@ static void yahoo_process_status(PurpleC
+ 
+ 			if (pair->value) {
+ 				decoded = purple_base64_decode(pair->value, &len);
+-				if (len) {
++				if (decoded && len > 0) {
+ 					tmp = purple_str_binary_to_ascii(decoded, len);
+ 					purple_debug_info("yahoo", "Got key 197, value = %s\n", tmp);
+ 					g_free(tmp);
+@@ -2863,15 +2863,17 @@ static void yahoo_process_p2p(PurpleConn
+ 	if (base64) {
+ 		guint32 ip;
+ 		YahooFriend *f;
+-		char *host_ip;
++		char *host_ip, *tmp;
+ 		struct yahoo_p2p_data *p2p_data;
+ 
+ 		decoded = purple_base64_decode(base64, &len);
+-		if (len) {
+-			char *tmp = purple_str_binary_to_ascii(decoded, len);
+-			purple_debug_info("yahoo", "Got P2P service packet (from server): who = %s, ip = %s\n", who, tmp);
+-			g_free(tmp);
++		if (decoded == NULL) {
++			purple_debug_info("yahoo","p2p: Unable to decode base64 IP (%s) \n", base64);
++			return;
+ 		}
++		tmp = purple_str_binary_to_ascii(decoded, len);
++		purple_debug_info("yahoo", "Got P2P service packet (from server): who = %s, ip = %s\n", who, tmp);
++		g_free(tmp);
+ 
+ 		ip = strtol((gchar *)decoded, NULL, 10);
+ 		g_free(decoded);
+Index: pidgin/libpurple/protocols/msn/slp.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/msn/slp.c
++++ pidgin/libpurple/protocols/msn/slp.c
+@@ -554,7 +554,7 @@ got_sessionreq(MsnSlpCall *slpcall, cons
+ 							 slpcall->slplink->remote_user);
+ 
+ 		header = (MsnFileContext *)purple_base64_decode(context, &bin_len);
+-		if (bin_len >= sizeof(MsnFileContext) - 1 &&
++		if (header != NULL && bin_len >= sizeof(MsnFileContext) - 1 &&
+ 			(header->version == 2 ||
+ 			 (header->version == 3 && header->length == sizeof(MsnFileContext) + 63))) {
+ 			file_size = GUINT64_FROM_LE(header->file_size);
+Index: pidgin/libpurple/plugins/perl/common/Util.xs
+===================================================================
+--- pidgin.orig/libpurple/plugins/perl/common/Util.xs
++++ pidgin/libpurple/plugins/perl/common/Util.xs
+@@ -238,7 +238,7 @@ purple_base16_decode(str)
+ 	guchar *ret;
+ 	CODE:
+ 		ret = purple_base16_decode(str, &len);
+-		if(len) {
++		if(ret && len > 0) {
+ 			RETVAL = newSVpv((gchar *)ret, len);
+ 		} else {
+ 			g_free(ret);
+@@ -256,7 +256,7 @@ purple_base64_decode(str)
+ 	guchar *ret;
+ 	CODE:
+ 		ret = purple_base64_decode(str, &len);
+-		if(len) {
++		if(ret && len > 0) {
+ 			RETVAL = newSVpv((gchar *)ret, len);
+ 		} else {
+ 			g_free(ret);
+Index: pidgin/libpurple/ntlm.c
+===================================================================
+--- pidgin.orig/libpurple/ntlm.c
++++ pidgin/libpurple/ntlm.c
+@@ -152,9 +152,14 @@ purple_ntlm_parse_type2(const gchar *typ
+ 	static guint8 nonce[8];
+ 
+ 	tmsg = (struct type2_message*)purple_base64_decode(type2, &retlen);
+-	memcpy(nonce, tmsg->nonce, 8);
+-	if (flags != NULL)
+-		*flags = GUINT16_FROM_LE(tmsg->flags);
++	if (tmsg != NULL && retlen >= (sizeof(struct type2_message) - 1)) {
++		memcpy(nonce, tmsg->nonce, 8);
++		if (flags != NULL)
++			*flags = GUINT16_FROM_LE(tmsg->flags);
++	} else {
++		purple_debug_error("ntlm", "Unable to parse type2 message - returning empty nonce.\n");
++		memset(nonce, 0, 8);
++	}
+ 	g_free(tmsg);
+ 
+ 	return nonce;
+Index: pidgin/libpurple/protocols/qq/im.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/qq/im.c
++++ pidgin/libpurple/protocols/qq/im.c
+@@ -547,7 +547,6 @@ qq_im_format *qq_im_fmt_new_by_purple(co
+ 	const gchar *start, *end, *last;
+ 	GData *attribs;
+ 	gchar *tmp;
+-	unsigned char *rgb;
+ 
+ 	g_return_val_if_fail(msg != NULL, NULL);
+ 
+@@ -570,8 +569,11 @@ qq_im_format *qq_im_fmt_new_by_purple(co
+ 
+ 		tmp = g_datalist_get_data(&attribs, "color");
+ 		if (tmp && strlen(tmp) > 1) {
+-			rgb = purple_base16_decode(tmp + 1, NULL);
+-			g_memmove(fmt->rgb, rgb, 3);
++			unsigned char *rgb;
++			gsize rgb_len;
++			rgb = purple_base16_decode(tmp + 1, &rgb_len);
++			if (rgb != NULL && rgb_len >= 3)
++				g_memmove(fmt->rgb, rgb, 3);
+ 			g_free(rgb);
+ 		}
+ 
+Index: pidgin/libpurple/protocols/myspace/message.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/myspace/message.c
++++ pidgin/libpurple/protocols/myspace/message.c
+@@ -1363,7 +1363,7 @@ msim_msg_get_binary_from_element(MsimMes
+ 			 *
+ 			 */
+ 			*binary_data = (gchar *)purple_base64_decode((const gchar *)elem->data, binary_length);
+-			return TRUE;
++			return ((*binary_data) != NULL);
+ 
+ 		case MSIM_TYPE_BINARY:
+ 			gs = (GString *)elem->data;
+Index: pidgin/libpurple/protocols/oscar/clientlogin.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/oscar/clientlogin.c
++++ pidgin/libpurple/protocols/oscar/clientlogin.c
+@@ -272,7 +272,7 @@ static void start_oscar_session_cb(Purpl
+ 	char *tls_certname = NULL;
+ 	unsigned short port;
+ 	guint8 *cookiedata;
+-	gsize cookiedata_len;
++	gsize cookiedata_len = 0;
+ 
+ 	od = user_data;
+ 	gc = od->gc;
+Index: pidgin/libpurple/protocols/jabber/auth_digest_md5.c
+===================================================================
+--- pidgin.orig/libpurple/protocols/jabber/auth_digest_md5.c
++++ pidgin/libpurple/protocols/jabber/auth_digest_md5.c
+@@ -182,7 +182,9 @@ digest_md5_handle_challenge(JabberStream
+ 
+ 	dec_in = (char *)purple_base64_decode(enc_in, NULL);
+ 	purple_debug_misc("jabber", "decoded challenge (%"
+-			G_GSIZE_FORMAT "): %s\n", strlen(dec_in), dec_in);
++			G_GSIZE_FORMAT "): %s\n",
++			dec_in != NULL ? strlen(dec_in) : 0,
++			dec_in != NULL  ? dec_in : "(null)");
+ 
+ 	parts = parse_challenge(dec_in);
+ 
