@@ -1,3 +1,11 @@
+pidgin (2.4.3-4lenny8) stable-security; urgency=low
+
+  * Move package VCS to git
+  * Re-enable SILC, SIMPLE, and Yahoo, which have all apparently been
+    disabled since 2.4.3-4lenny6, and which is a grave regression.
+
+ -- Ari Pollak <ari@debian.org>  Sat, 06 Nov 2010 20:02:10 -0400
+
 pidgin (2.4.3-4lenny7) stable-security; urgency=low
 
   * I forgot to explicitly enable the zephyr prpl (Closes: #579601) 
