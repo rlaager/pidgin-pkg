@@ -1,3 +1,16 @@
+pidgin (2.7.3-1+squeeze2) squeeze; urgency=medium
+
+  * CVE-2011-3594.patch:
+    - fix a SILC remote crash bug
+  * CVE-2011-4601.patch:
+    - fix an AIM/ICQ remote crash bug
+  * CVE-2011-4602.patch:
+    - fix an XMPP remote crash bug
+  * CVE-2011-4603.patch:
+    - fix a SILC remote crash bug
+
+ -- Ari Pollak <ari@debian.org>  Sat, 07 Jan 2012 21:47:12 -0500
+
 pidgin (2.7.3-1+squeeze1) squeeze; urgency=medium
 
   * baseXX_decode_error_handling_2.patch:

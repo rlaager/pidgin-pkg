@@ -3,3 +3,7 @@ python26.patch
 libnssckbi_path.patch
 baseXX_decode_error_handling_2.patch
 cyrus_sasl_crash.patch
+CVE-2011-3594.patch
+CVE-2011-4601.patch
+CVE-2011-4602.patch
+CVE-2011-4603.patch
