@@ -1,4 +1,4 @@
-pidgin (1:2.10.1-1ubuntu1+pidgin1.11.10) oneiric; urgency=low
+pidgin (1:2.10.1-1ubuntu1+pidgin1.11.04) natty; urgency=low
 
   * Build 2.10.1 for the Pidgin PPA
     - debian/control
@@ -6,7 +6,7 @@ pidgin (1:2.10.1-1ubuntu1+pidgin1.11.10) oneiric; urgency=low
       + Point Vcs-Git & Vcs-Browser to github
       + Build-Depend on dh-autoreconf
 
- -- Richard Laager <rlaager@pidgin.im>  Mon, 09 Jan 2012 15:51:16 -0600
+ -- Richard Laager <rlaager@pidgin.im>  Mon, 09 Jan 2012 15:59:30 -0600
 
 pidgin (1:2.10.1-1ubuntu1) precise; urgency=low
 
