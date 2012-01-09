@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*~' pidgin-2.5.5/libpurple/protocols/irc/irc.h pidgin-2.5.5.new/libpurple/protocols/irc/irc.h
+--- pidgin-2.5.5/libpurple/protocols/irc/irc.h	2008-10-31 01:55:26.000000000 +0100
++++ pidgin-2.5.5.new/libpurple/protocols/irc/irc.h	2009-03-09 20:28:55.000000000 +0100
+@@ -30,7 +30,7 @@
+ #include "roomlist.h"
+ #include "sslconn.h"
+ 
+-#define IRC_DEFAULT_SERVER "irc.freenode.net"
++#define IRC_DEFAULT_SERVER "irc.ubuntu.com"
+ #define IRC_DEFAULT_PORT 6667
+ #define IRC_DEFAULT_SSL_PORT 994
+ 

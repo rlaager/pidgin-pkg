@@ -1,3 +1,9 @@
+pidgin (1:2.10.1-1ubuntu1) precise; urgency=low
+
+  * New upstream version based on the Debian update
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Jan 2012 15:46:36 +0100
+
 pidgin (2.10.1-1) unstable; urgency=medium
 
   * Imported Upstream version 2.10.1
@@ -27,6 +33,58 @@ pidgin (2.10.0-1) unstable; urgency=high
     (Closes: #634612)
 
  -- Ari Pollak <ari@debian.org>  Thu, 18 Aug 2011 08:18:02 -0400
+
+pidgin (1:2.10.0-0ubuntu3) precise; urgency=low
+
+  * Rebuild for Perl 5.14 (LP: #890845).
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 15 Nov 2011 21:05:59 +0000
+
+pidgin (1:2.10.0-0ubuntu2) oneiric; urgency=low
+
+  * debian/patches/irc_disable_periodic_who.patch: work around spontaneous
+    disconnects from IRC due to 'Max SendQ exceeded' errors caused by periodic
+    /who checks. (LP: #856631)
+
+ -- Mathieu Trudel-Lapierre <mathieu-tl@ubuntu.com>  Fri, 23 Sep 2011 22:00:52 -0400
+
+pidgin (1:2.10.0-0ubuntu1) oneiric; urgency=low
+
+  * New upstream release.
+  * debian/patches/60_1024x600_gtkprefs.c.patch: refreshed.
+
+ -- Mathieu Trudel-Lapierre <mathieu-tl@ubuntu.com>  Thu, 25 Aug 2011 16:08:06 -0400
+
+pidgin (1:2.9.0-3ubuntu1) oneiric; urgency=low
+
+  * Merge with Debian; remaining changes: (LP: #802374)
+    - debian/libpurple0.symbols: update symbols for epoch.
+    - debian/patches/02_lpi.patch: add Launchpad integration support.
+    - debian/patches/04_let_crasher_for_apport.patch: stop catching the SIGSEGV
+      signal and let apport handle it.
+    - debian/patches/05_default_to_irc_ubuntu_com.patch: set the default IRC
+      server to irc.ubuntu.com.
+    - debian/patches/10_docklet_default_off.patch: default behavior to have no
+      notification area icon.
+    - debian/patches/11_buddy_list_really_show.patch: the buddy list tries
+      harder to appear.  This fixes some issues with it not appearing.
+    - debian/patches/13_sounds_and_timers.patch: mute notification sounds for
+      15 seconds at login time.
+    - debian/patches/60_1024x600_gtk*.c.patch: add scrollbars into preferences
+      and pounce dialogs
+    - debian/prefs.xml: ship extra default settings for notifications, add
+      the notification plugin by default and turn on logging by default.
+    - debian/rules:
+      - use autoreconf.
+      - add translation domain for desktop file / update translations.
+      - add launcher desktop file for indicator-messages.
+    - debian/control:
+      - add launchpad-integration, libtool, dh-autoreconf to Build-Depends.
+      - drop pidgin-data Depends from libpurple0.
+      - drop libpurple0 Depends from libpurple-bin.
+      - add pidgin-libnotify as Recommends for pidgin binary.
+
+ -- Mathieu Trudel-Lapierre <mathieu-tl@ubuntu.com>  Fri, 29 Jul 2011 10:45:37 -0400
 
 pidgin (2.9.0-3) unstable; urgency=low
 
@@ -59,6 +117,12 @@ pidgin (2.8.0-2) unstable; urgency=low
 
  -- Ari Pollak <ari@debian.org>  Wed, 15 Jun 2011 19:19:58 -0400
 
+pidgin (1:2.8.0-1ubuntu1) oneiric; urgency=low
+
+  * Updated to the new version, backporting corresponding Debian revision
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 16 Jun 2011 11:22:59 +0200
+
 pidgin (2.8.0-1) unstable; urgency=low
 
   * Imported Upstream version 2.8.0 (Closes: #630124)
@@ -73,6 +137,61 @@ pidgin (2.7.11-2) unstable; urgency=low
     (Closes: #621940)
 
  -- Ari Pollak <ari@debian.org>  Sun, 08 May 2011 10:04:26 -0400
+
+pidgin (1:2.7.11-1ubuntu4) oneiric; urgency=low
+
+  * Clean debian-changes-2.7.11-1ubuntu1 from the previous upload
+  * debian/control, debian/rules:
+    - use dh-autoreconf since the lpi patch needs a configure update,
+      thanks Michael Bienia for figuring that build issue
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 19 May 2011 10:39:30 +0200
+
+pidgin (1:2.7.11-1ubuntu3) oneiric; urgency=low
+
+  * Rebuild for Perl 5.12.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Tue, 10 May 2011 05:25:58 +0100
+
+pidgin (1:2.7.11-1ubuntu2) natty; urgency=low
+
+  * Symbols were removed from libpurple-client.so.0 and are now only found in
+    libpurple.so.0 (LP: #757311)
+    - update debian/libpurple0.symbols
+
+ -- Micah Gersten <micahg@ubuntu.com>  Mon, 11 Apr 2011 04:31:49 -0500
+
+pidgin (1:2.7.11-1ubuntu1) natty; urgency=low
+
+  * Merge from Debian unstable (LP: #757146), remaining changes:
+    + debian/control:
+      - Add libtool and liblaunchpad-integration-dev build depends
+      - Bump standards version
+      - Relax binary depends on pidgin versions
+      - Add pidgin-libnotify as Recommends for pidgin binary
+      - Fix description of pidgin binary
+      - Don't have libpurple-bin depend on libpurple0
+    + debian/libpurple0.symbols: add epoch to appropriate symbols
+    + Add debian/patches:
+      - 02_lpi.patch
+      - 04_let_crasher_for_apport.patch
+      - 05_default_to_irc_ubuntu_com.patch
+      - 10_docklet_default_off.patch
+      - 11_buddy_list_really_show.patch
+      - 13_sounds_and_timers.patch
+      - 60_1024x600_gtkpounce.c.patch
+      - 60_1024x600_gtkprefs.c.patch
+    + debian/prefs.xml: add notification prefs
+    + debian/rules:
+      - Add translation domain to desktop file with gettext
+      - Add the launcher for pidgin
+
+  * Add configure check for launchpad integration attached to the gtk check since 
+    upstream dropped the startup notification check which is where this check was 
+    previously
+    - update debian/patches/02_lpi.patch
+
+ -- Micah Gersten <micahg@ubuntu.com>  Mon, 11 Apr 2011 03:27:22 -0500
 
 pidgin (2.7.11-1) unstable; urgency=high
 
@@ -90,12 +209,31 @@ pidgin (2.7.9-2) unstable; urgency=low
 
  -- Ari Pollak <ari@debian.org>  Sun, 02 Jan 2011 14:08:57 -0500
 
+pidgin (1:2.7.9-1ubuntu2) natty; urgency=low
+
+  * debian/control: Have pidgin-data Replaces: pidgin-facebookchat, as they
+    both ship the same icon. (LP: #697097)
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Sun, 09 Jan 2011 06:30:48 -0600
+
+pidgin (1:2.7.9-1ubuntu1) natty; urgency=low
+
+  * Resynchronize on Debian
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 03 Jan 2011 16:36:53 +0100
+
 pidgin (2.7.9-1) unstable; urgency=medium
 
   * Imported Upstream version 2.7.9 (Closes: #608331)
     - fixes a potential DoS vulnerability in MSN protocol
 
  -- Ari Pollak <ari@debian.org>  Sat, 01 Jan 2011 16:49:39 -0500
+
+pidgin (1:2.7.7-1ubuntu1) natty; urgency=low
+
+  * New upstream version, drop msn workaround
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 02 Dec 2010 16:45:52 +0100
 
 pidgin (2.7.7-1) unstable; urgency=low
 
@@ -111,6 +249,28 @@ pidgin (2.7.6-1) unstable; urgency=low
     - thanks to Martin Pitt
 
  -- Ari Pollak <ari@debian.org>  Mon, 22 Nov 2010 09:42:59 -0500
+
+pidgin (1:2.7.5-1ubuntu3) natty; urgency=low
+
+  * debian/patches/13_sounds_and_timers.patch: Squash debian-changes-*
+    patch onto this one, was presumably split up by accident
+  * debian/patches/workaround-msn-ssl-failure.patch: Workaround SSL
+    connectivity issues with MSN (LP: #676972)
+
+ -- Chow Loong Jin <hyperair@ubuntu.com>  Fri, 19 Nov 2010 20:49:42 +0800
+
+pidgin (1:2.7.5-1ubuntu2) natty; urgency=low
+
+  * debian/rules: Call dh_perl with -d to avoid Perl dependency. The shipped
+    perl module only uses modules from perl-base.
+
+ -- Martin Pitt <martin.pitt@ubuntu.com>  Tue, 09 Nov 2010 14:02:05 +0100
+
+pidgin (1:2.7.5-1ubuntu1) natty; urgency=low
+
+  * Resync on Debian
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 05 Nov 2010 19:44:21 +0100
 
 pidgin (2.7.5-1) unstable; urgency=low
 
@@ -141,6 +301,69 @@ pidgin (2.7.3-2) unstable; urgency=low
   * Apply upstream patch to fix random crashes in MSN (Closes: #594893)
 
  -- Ari Pollak <ari@debian.org>  Sat, 11 Sep 2010 00:21:02 -0400
+
+pidgin (1:2.7.3-1ubuntu3.1) maverick-security; urgency=low
+
+  * SECURITY UPDATE: denial of service via base64 decoding (LP: #666998)
+    - debian/patches/61_CVE-2010-3711.patch: correctly handle
+      purple_base64_decode return codes in libpurple/ntlm.c,
+      libpurple/plugins/perl/common/Util.xs,
+      libpurple/protocols/{jabber/auth_digest_md5.c,msn/slp.c,
+      myspace/message.c,oscar/clientlogin.c,qq/im.c,yahoo/libymsg.c}.
+    - CVE-2010-3711
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 02 Nov 2010 17:17:40 -0400
+
+pidgin (1:2.7.3-1ubuntu3) maverick; urgency=low
+
+  * Include upstream bugfix (bug 12629) for Bonjour support (LP: #641344)
+
+ -- Stéphane Graber <stgraber@ubuntu.com>  Tue, 21 Sep 2010 08:31:16 -0400
+
+pidgin (1:2.7.3-1ubuntu2) maverick; urgency=low
+
+  [ K. Vishnoo Charan Reddy ]
+  * debian/control:
+   - Improve package description for pidgin (LP: #259793)
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Thu, 02 Sep 2010 17:29:43 +1000
+
+pidgin (1:2.7.3-1ubuntu1) maverick; urgency=low
+
+  * Resync on Debian, workaround build issue (lp:#600952) 
+  * debian/control:
+    - Build-Depends on liblaunchpad-integration-dev
+    - Drop libpurple0 dependency from libpurple-bin
+    - Drop pidgin-data dependency from libpurple0
+    - Recommends pidgin-libnotify
+  * debian/libpurple0.symbols: 
+    - add epochs
+  * debian/patches/02_lpi.patch:
+    - launchpad integration
+  * debian/patches/04_let_crasher_for_apport.patch:
+    - stop catching the SIGSEGV signal and let apport handle it
+  * debian/patches/05_default_to_irc_ubuntu_com.patch:
+    - set the default IRC server to irc.ubuntu.com
+  * debian/patches/10_docklet_default_off.patch:
+    - default behavior to have no notification area icon.
+  * debian/patches/11_buddy_list_really_show.patch:
+    - the buddy list tries harder to appear.  This fixes some issues with it
+      not appearing.
+  * debian/patches/ 13_sounds_and_timers.patch:
+    - adjusts the time out for sounds to be 15 seconds, 
+      which helps get fewer spurious login notifications on slow connections.
+  * debian/patches/60_1024x600_gtk*.c.patch: 
+    - add scrollbars into preferences and pounce dialogs
+  * debian/prefs.xml: 
+    - Update to set the notify plugin prefs /plugins/gtk/X11/notify/*, 
+      set /pidgin/plugins/loaded to load the notify plugin and enable 
+      the standard logging options by default
+  * debian/rules:
+    - install a launcher in the message indicator
+    - set translation domain and update template
+    - use simple-patchsys rules
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 11 Aug 2010 14:16:15 +0200
 
 pidgin (2.7.3-1) unstable; urgency=low
 

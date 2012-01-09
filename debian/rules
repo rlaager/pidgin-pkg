@@ -2,6 +2,7 @@
 
 export DEB_BUILD_HARDENING=1
 
+include /usr/share/cdbs/1/rules/autoreconf.mk
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/gnome.mk
@@ -57,6 +58,10 @@ common-install-impl::
 		-e '/@OSCAR_AUTHORS@/r libpurple/protocols/oscar/AUTHORS' \
 		-e '/@OSCAR_AUTHORS@/d' \
 	debian/copyright.in > debian/copyright
+	# Translation domain to desktop file
+	echo 'X-Ubuntu-Gettext-Domain=pidgin' >> debian/tmp/usr/share/applications/pidgin.desktop
+	# Call intltool-update to build the .pot
+	cd $(DEB_SRCDIR)/po; intltool-update -p
 
 cleanbuilddir/pidgin::
 	rm -rf $(DEB_SRCDIR)/build
@@ -64,6 +69,11 @@ cleanbuilddir/pidgin::
 build/pidgin-dev::
 	pod2man debian/dh_pidgin > debian/dh_pidgin.1
 	cd build; make docs
+
+binary-install/pidgin::
+	# Add the launcher for pidgin
+	mkdir -p debian/pidgin/usr/share/indicators/messages/applications
+	echo /usr/share/applications/pidgin.desktop > debian/pidgin/usr/share/indicators/messages/applications/pidgin
 
 binary-install/pidgin-dev::
 	dh_installdocs -ppidgin-dev debian/README.Debian.dev
