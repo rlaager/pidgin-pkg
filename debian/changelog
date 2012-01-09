@@ -1,3 +1,12 @@
+pidgin (1:2.10.1-1ubuntu1+pidgin1.12.04) precise; urgency=low
+
+  * Build 2.10.1 for the Pidgin PPA
+    - debian/control
+      + Set Maintainer to Richard Laager <rlaager@pidgin.im>
+      + Point Vcs-Git & Vcs-Browser to github
+
+ -- Richard Laager <rlaager@pidgin.im>  Mon, 09 Jan 2012 13:20:36 -0600
+
 pidgin (1:2.10.1-1ubuntu1) precise; urgency=low
 
   * New upstream version based on the Debian update
