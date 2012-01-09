@@ -1,4 +1,4 @@
-pidgin (1:2.10.1-1ubuntu1+pidgin1.10.10) maverick; urgency=low
+pidgin (1:2.10.1-1ubuntu1+pidgin1.10.04) lucid; urgency=low
 
   * Build 2.10.1 for the Pidgin PPA
     - debian/control
@@ -6,7 +6,7 @@ pidgin (1:2.10.1-1ubuntu1+pidgin1.10.10) maverick; urgency=low
       + Point Vcs-Git & Vcs-Browser to github
       + Build-Depend on dh-autoreconf
 
- -- Richard Laager <rlaager@pidgin.im>  Mon, 09 Jan 2012 16:03:45 -0600
+ -- Richard Laager <rlaager@pidgin.im>  Mon, 09 Jan 2012 16:07:29 -0600
 
 pidgin (1:2.10.1-1ubuntu1) precise; urgency=low
 
