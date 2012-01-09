@@ -1,7 +1,7 @@
 Source: pidgin
 Section: net
 Priority: optional
-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Maintainer: Richard Laager <rlaager@pidgin.im>
 XSBC-Original-Maintainer: Ari Pollak <ari@debian.org>
 Build-Depends: cdbs (>= 0.4.53), debhelper (>= 7), intltool, gconf2,
  liblaunchpad-integration-dev,
