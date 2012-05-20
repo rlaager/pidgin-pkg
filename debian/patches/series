@@ -1,4 +1,3 @@
-02_lpi.patch
 04_let_crasher_for_apport.patch
 05_default_to_irc_ubuntu_com.patch
 10_docklet_default_off.patch
