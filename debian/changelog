@@ -1,6 +1,6 @@
-pidgin (1:2.10.1-1ubuntu1+pidgin2.10.04) lucid; urgency=low
+pidgin (1:2.10.4-1ubuntu0+pidgin2.10.04) lucid; urgency=low
 
-  * Build 2.10.1 for the Pidgin PPA
+  * Build 2.10.4 for the Pidgin PPA
     - debian/control
       + Set Maintainer to Richard Laager <rlaager@pidgin.im>
       + Point Vcs-Git & Vcs-Browser to github
@@ -8,13 +8,52 @@ pidgin (1:2.10.1-1ubuntu1+pidgin2.10.04) lucid; urgency=low
       + Relax the network-manager-dev Build-Dep back to >= 0.5.0
       + Remove the Conflicts: network-manager (<< 0.9.0)
 
- -- Richard Laager <rlaager@pidgin.im>  Tue, 10 Jan 2012 03:24:07 -0600
+ -- Richard Laager <rlaager@pidgin.im>  Sun, 20 May 2012 00:49:35 -0500
+
+pidgin (1:2.10.3-0ubuntu2) quantal; urgency=low
+
+  * debian/control:
+    - Drop dependency on liblaunchpad-integration-dev
+  * debian/patches/02_lpi.patch:
+    - Dropped, we no longer do Launchpad integration
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Tue, 15 May 2012 10:12:45 +1200
+
+pidgin (1:2.10.3-0ubuntu1) precise; urgency=low
+
+  * update to new stable release, fixes (LP: #964210)
+
+ -- Alexander Fougner <fougner89@gmail.com>  Fri, 06 Apr 2012 10:03:13 +0200
+
+pidgin (1:2.10.2-1ubuntu2) precise; urgency=low
+
+  * debian/patches/70_farstream_rename.patch
+    - updated patch from the upstream bug report
+      http://developer.pidgin.im/ticket/14936
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Wed, 04 Apr 2012 17:02:58 -0400
 
 pidgin (1:2.10.1-1ubuntu1) precise; urgency=low
 
   * New upstream version based on the Debian update
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Jan 2012 15:46:36 +0100
+
+pidgin (2.10.2-1.1) experimental; urgency=low
+
+  * Non-maintainer upload with Ari approval.
+  * Add debian/patches/port-to-farstream.patch: Use farstream instead of
+    farsight (Closes: #664527)
+
+ -- Laurent Bigonville <bigon@debian.org>  Sat, 31 Mar 2012 20:36:59 +0200
+
+pidgin (2.10.2-1) unstable; urgency=medium
+
+  * Imported Upstream version 2.10.2
+    - Fixes a possible remote crash in XMPP (CVE-2011-4939) (Closes: #664028)
+    - Fixes a possible remote crash in XMPP (CVE-2012-1178) (Closes: #664030)
+
+ -- Ari Pollak <ari@debian.org>  Wed, 14 Mar 2012 21:20:18 -0400
 
 pidgin (2.10.1-1) unstable; urgency=medium
 

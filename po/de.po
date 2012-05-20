@@ -2,7 +2,7 @@
 # Pidgin German translation
 # Copyright (C) 2001, Daniel Seifert <Pidgin-translation@dseifert.de>
 # Copyright (C) 2002, Karsten Weiss <knweiss@gmx.de>
-# Copyright (C) 2002-2011, Björn Voigt <bjoern@cs.tu-berlin.de>,
+# Copyright (C) 2002-2012, Björn Voigt <bjoern@cs.tu-berlin.de>,
 #                     Jochen Kemnade <jochenkemnade@web.de>
 #
 # This file is distributed under the same license as the Pidgin package.
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 10:27+0200\n"
-"PO-Revision-Date: 2011-08-11 10:12+0200\n"
+"POT-Creation-Date: 2012-04-20 10:02+0200\n"
+"PO-Revision-Date: 2012-04-20 10:02+0200\n"
 "Last-Translator: Björn Voigt <bjoern@cs.tu-berlin.de>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
@@ -2274,6 +2274,9 @@ msgstr ""
 msgid "A non-recoverable Farsight2 error has occurred."
 msgstr "Ein nicht behebbarer Farsight2-Fehler ist aufgetreten."
 
+msgid "A non-recoverable Farstream error has occurred."
+msgstr "Ein nicht behebbarer Farstream-Fehler ist aufgetreten."
+
 msgid "Error with your microphone"
 msgstr "Fehler mit Ihrem Mikrofon"
 
@@ -3474,7 +3477,7 @@ msgstr "IRC-Protokoll-Plugin"
 msgid "The IRC Protocol Plugin that Sucks Less"
 msgstr "Das IRC-Protokoll-Plugin mit weniger Problemen"
 
-#. host to connect to
+#. set up account ID as user:server
 msgid "Server"
 msgstr "Server"
 
@@ -5929,6 +5932,30 @@ msgid "Message was not sent because an unknown error occurred."
 msgstr ""
 "Nachricht konnte nicht gesendet werden, da ein unbekannter Fehler "
 "aufgetreten ist."
+
+#, c-format
+msgid ""
+"%s (There was an error receiving this message. Converting the encoding from "
+"%s to UTF-8 failed.)"
+msgstr ""
+"%s (Es gab einen Fehler beim Konvertieren dieser Nachricht. Die "
+"Konvertierung von %s zu UTF-8 ist gescheitert.)"
+
+#, c-format
+msgid ""
+"%s (There was an error receiving this message. The charset was %s, but it "
+"was not valid UTF-8.)"
+msgstr ""
+"%s (Es gab einen Fehler beim Empfang dieser Nachricht. Der Zeichensatz war "
+"%s, aber es war kein gültiges UTF-8.)"
+
+#, c-format
+msgid ""
+"%s (There was an error receiving this message. The charset was missing, but "
+"it was not valid UTF-8.)"
+msgstr ""
+"%s (Es gab einen Fehler beim Konvertieren dieser Nachricht. Der Zeichensatz "
+"fehlte und es war kein gültiges UTF-8.)"
 
 msgid "Writing error"
 msgstr "Schreibfehler"
@@ -8433,25 +8460,8 @@ msgstr "Sende TEST-Nachricht"
 msgid "Topic:"
 msgstr "Thema:"
 
-msgid "No Sametime Community Server specified"
-msgstr "Kein Sametime-Community Server angegeben"
-
-#, c-format
-msgid ""
-"No host or IP address has been configured for the Meanwhile account %s. "
-"Please enter one below to continue logging in."
-msgstr ""
-"Es wurde kein Rechner für das Meanwhile-Konto %s angegeben. Bitte geben Sie "
-"einen Rechner an, um die Anmeldung fortzusetzen."
-
-msgid "Meanwhile Connection Setup"
-msgstr "Meanwhile-Verbindungseinstellungen"
-
-msgid "No Sametime Community Server Specified"
-msgstr "Kein Sametime-Community Server angegeben"
-
-msgid "Connect"
-msgstr "Verbinden"
+msgid "A server is required to connect this account"
+msgstr "Es wird ein Server benötigt um dieses Konto zu verbinden"
 
 #, c-format
 msgid "Unknown (0x%04x)<br>"
@@ -12042,9 +12052,6 @@ msgstr "Urdu"
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
-msgid "T.M.Thanh and the Gnome-Vi Team"
-msgstr "T.M.Thanh und das Gnome-Vi Team"
-
 msgid "Simplified Chinese"
 msgstr "Vereinfachtes Chinesisch"
 
@@ -12059,6 +12066,9 @@ msgstr "Amharisch"
 
 msgid "Lithuanian"
 msgstr "Litauisch"
+
+msgid "T.M.Thanh and the Gnome-Vi Team"
+msgstr "T.M.Thanh und das Gnome-Vi Team"
 
 #, c-format
 msgid ""
@@ -12779,8 +12789,14 @@ msgstr "%s möchte eine Video-Sitzung mit Ihnen starten."
 msgid "Incoming Call"
 msgstr "Eingehender Anruf"
 
+msgid "_Hold"
+msgstr "_Halten"
+
 msgid "_Pause"
 msgstr "_Pause"
+
+msgid "_Mute"
+msgstr "Stu_mmschalten"
 
 #, c-format
 msgid "%s has %d new message."
@@ -15135,3 +15151,22 @@ msgstr "Besuchen Sie die Pidgin-Webseite"
 
 msgid "You do not have permission to uninstall this application."
 msgstr "Sie haben keine Berechtigung, diese Anwendung zu deinstallieren."
+
+#~ msgid "No Sametime Community Server specified"
+#~ msgstr "Kein Sametime-Community Server angegeben"
+
+#~ msgid ""
+#~ "No host or IP address has been configured for the Meanwhile account %s. "
+#~ "Please enter one below to continue logging in."
+#~ msgstr ""
+#~ "Es wurde kein Rechner für das Meanwhile-Konto %s angegeben. Bitte geben "
+#~ "Sie einen Rechner an, um die Anmeldung fortzusetzen."
+
+#~ msgid "Meanwhile Connection Setup"
+#~ msgstr "Meanwhile-Verbindungseinstellungen"
+
+#~ msgid "No Sametime Community Server Specified"
+#~ msgstr "Kein Sametime-Community Server angegeben"
+
+#~ msgid "Connect"
+#~ msgstr "Verbinden"
