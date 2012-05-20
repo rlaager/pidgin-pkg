@@ -5,8 +5,10 @@ pidgin (1:2.10.4-1ubuntu0+pidgin1.12.04) precise; urgency=low
       + Set Maintainer to Richard Laager <rlaager@pidgin.im>
       + Point Vcs-Git & Vcs-Browser to github
       + Build-Depend on dh-autoreconf
+      + Relax the network-manager-dev Build-Dep back to >= 0.5.0
+      + Remove the Conflicts: network-manager (<< 0.9.0)
 
- -- Richard Laager <rlaager@wiktel.com>  Mon, 09 Jan 2012 13:52:18 -0600
+ -- Richard Laager <rlaager@pidgin.im>  Sat, 19 May 2012 20:46:00 -0500
 
 pidgin (1:2.10.3-0ubuntu2) quantal; urgency=low
 
