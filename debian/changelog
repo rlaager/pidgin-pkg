@@ -1,4 +1,4 @@
-pidgin (1:2.10.4-1ubuntu0+pidgin2.11.04) natty; urgency=low
+pidgin (1:2.10.4-1ubuntu0+pidgin3.11.04) natty; urgency=low
 
   * Build 2.10.4 for the Pidgin PPA
     - debian/control
@@ -8,7 +8,7 @@ pidgin (1:2.10.4-1ubuntu0+pidgin2.11.04) natty; urgency=low
       + Relax the network-manager-dev Build-Dep back to >= 0.5.0
       + Remove the Conflicts: network-manager (<< 0.9.0)
 
- -- Richard Laager <rlaager@pidgin.im>  Sun, 20 May 2012 00:46:44 -0500
+ -- Richard Laager <rlaager@pidgin.im>  Sun, 20 May 2012 03:30:32 -0500
 
 pidgin (1:2.10.3-0ubuntu2) quantal; urgency=low
 
