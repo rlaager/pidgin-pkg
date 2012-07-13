@@ -1,4 +1,4 @@
-pidgin (1:2.10.6-0ubuntu1+pidgin1.12.10) quantal; urgency=low
+pidgin (1:2.10.6-0ubuntu1+pidgin1.12.04) precise; urgency=low
 
   * Build 2.10.6 for the Pidgin PPA
     - debian/control
