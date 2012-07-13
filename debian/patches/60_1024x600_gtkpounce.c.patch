@@ -1,7 +1,8 @@
-diff -Nur -x '*.orig' -x '*~' pidgin-2.5.4/pidgin/gtkpounce.c pidgin-2.5.4.new/pidgin/gtkpounce.c
---- pidgin-2.5.4/pidgin/gtkpounce.c	2009-01-13 03:05:39.000000000 +0800
-+++ pidgin-2.5.4.new/pidgin/gtkpounce.c	2009-02-26 00:38:15.445274448 +0800
-@@ -498,6 +498,7 @@
+Index: pidgin-2.10.2/pidgin/gtkpounce.c
+===================================================================
+--- pidgin-2.10.2.orig/pidgin/gtkpounce.c	2012-03-14 06:28:02.000000000 +0100
++++ pidgin-2.10.2/pidgin/gtkpounce.c	2012-03-16 12:33:59.276065914 +0100
+@@ -495,6 +495,7 @@
  	GPtrArray *sound_widgets;
  	GPtrArray *exec_widgets;
  	GtkWidget *send_msg_imhtml;
@@ -9,7 +10,7 @@ diff -Nur -x '*.orig' -x '*~' pidgin-2.5.4/pidgin/gtkpounce.c pidgin-2.5.4.new/p
  
  	g_return_if_fail((cur_pounce != NULL) ||
  	                 (account != NULL) ||
-@@ -547,8 +548,14 @@
+@@ -544,8 +545,14 @@
  
  	/* Create the vbox that will contain all the prefs stuff. */
  	vbox2 = gtk_vbox_new(FALSE, PIDGIN_HIG_BOX_SPACE);
@@ -26,7 +27,7 @@ diff -Nur -x '*.orig' -x '*~' pidgin-2.5.4/pidgin/gtkpounce.c pidgin-2.5.4.new/p
  	/* Create the "Pounce on Whom" frame. */
  	frame = pidgin_make_frame(vbox2, _("Pounce on Whom"));
  
-@@ -1015,6 +1022,12 @@
+@@ -1012,6 +1019,12 @@
  	}
  
  	gtk_widget_show(vbox2);

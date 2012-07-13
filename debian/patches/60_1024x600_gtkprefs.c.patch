@@ -1,7 +1,7 @@
-Index: pidgin/pidgin/gtkprefs.c
+Index: pidgin-2.10.2/pidgin/gtkprefs.c
 ===================================================================
---- pidgin.orig/pidgin/gtkprefs.c	2011-08-25 12:07:45.661087959 -0400
-+++ pidgin/pidgin/gtkprefs.c	2011-08-25 14:40:03.701783075 -0400
+--- pidgin-2.10.2.orig/pidgin/gtkprefs.c	2012-03-14 06:28:02.000000000 +0100
++++ pidgin-2.10.2/pidgin/gtkprefs.c	2012-03-16 12:34:01.108065984 +0100
 @@ -1333,6 +1333,7 @@
  	GtkWidget *label;
  	GtkSizeGroup *sg;
@@ -57,7 +57,7 @@ Index: pidgin/pidgin/gtkprefs.c
  
  	ret = gtk_vbox_new(FALSE, PIDGIN_HIG_CAT_SPACE);
  	gtk_container_set_border_width (GTK_CONTAINER (ret), PIDGIN_HIG_BORDER);
-@@ -2005,6 +2025,14 @@
+@@ -2014,6 +2034,14 @@
  		g_object_unref(sg);
  	}
  
@@ -72,7 +72,7 @@ Index: pidgin/pidgin/gtkprefs.c
  	return ret;
  }
  #endif /*_WIN32*/
-@@ -2443,6 +2471,7 @@
+@@ -2460,6 +2488,7 @@
  	int j;
  	const char *file;
  	char *pref;
@@ -80,7 +80,7 @@ Index: pidgin/pidgin/gtkprefs.c
  #ifndef _WIN32
  	GtkWidget *dd;
  	GtkWidget *entry;
-@@ -2614,6 +2643,15 @@
+@@ -2631,6 +2660,15 @@
  	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 1);
  
  	gtk_widget_show_all(ret);

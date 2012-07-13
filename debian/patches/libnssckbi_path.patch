@@ -2,11 +2,11 @@ From: Mike Hommey <mh+reportbug@glandium.org>
 Bug-Debian: http://bugs.debian.org/564711
 Forwarded: no
 Description: Fix path to libnssckbi.so
-Index: pidgin/libpurple/plugins/ssl/ssl-nss.c
+Index: pidgin-2.10.2/libpurple/plugins/ssl/ssl-nss.c
 ===================================================================
---- pidgin.orig/libpurple/plugins/ssl/ssl-nss.c
-+++ pidgin/libpurple/plugins/ssl/ssl-nss.c
-@@ -131,7 +131,7 @@ ssl_nss_init_nss(void)
+--- pidgin-2.10.2.orig/libpurple/plugins/ssl/ssl-nss.c	2012-03-14 06:28:00.000000000 +0100
++++ pidgin-2.10.2/libpurple/plugins/ssl/ssl-nss.c	2012-03-16 12:34:02.860066050 +0100
+@@ -131,7 +131,7 @@
  
  	/* TODO: Fix this so autoconf does the work trying to find this lib. */
  #ifndef _WIN32

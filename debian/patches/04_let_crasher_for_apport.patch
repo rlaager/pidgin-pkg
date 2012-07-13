@@ -1,6 +1,8 @@
---- pidgin-2.3.1/pidgin/gtkmain.c	2007-12-07 14:37:11.000000000 +0000
-+++ pidgin-2.3.1/pidgin/gtkmain.c.new	2007-12-21 03:14:32.000000000 +0000
-@@ -93,7 +93,6 @@
+Index: pidgin-2.10.2/pidgin/gtkmain.c
+===================================================================
+--- pidgin-2.10.2.orig/pidgin/gtkmain.c	2012-03-14 06:28:02.000000000 +0100
++++ pidgin-2.10.2/pidgin/gtkmain.c	2012-03-16 12:33:48.964065522 +0100
+@@ -84,7 +84,6 @@
   * Each list terminated with -1
   */
  static const int catch_sig_list[] = {
@@ -8,4 +10,3 @@
  	SIGINT,
  	SIGTERM,
  	SIGQUIT,
- 

@@ -1,14 +1,38 @@
-pidgin (1:2.10.4-1ubuntu0+pidgin3.12.10) quantal; urgency=low
+pidgin (1:2.10.6-0ubuntu1+pidgin1.12.10) quantal; urgency=low
 
-  * Build 2.10.4 for the Pidgin PPA
+  * Build 2.10.6 for the Pidgin PPA
     - debian/control
       + Set Maintainer to Richard Laager <rlaager@pidgin.im>
       + Point Vcs-Git & Vcs-Browser to github
-      + Build-Depend on dh-autoreconf
+      + Allow libgstfarsight0.10-dev as an alternative to libfarstream-0.1-dev
       + Relax the network-manager-dev Build-Dep back to >= 0.5.0
       + Remove the Conflicts: network-manager (<< 0.9.0)
 
- -- Richard Laager <rlaager@pidgin.im>  Sun, 20 May 2012 11:54:29 -0500
+ -- Richard Laager <rlaager@pidgin.im>  Thu, 12 Jul 2012 19:38:45 -0500
+
+pidgin (1:2.10.6-0ubuntu1) quantal-proposed; urgency=low
+
+  * New upstream release
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 09 Jul 2012 09:47:15 +1200
+
+pidgin (1:2.10.5-0ubuntu1) quantal-proposed; urgency=low
+
+  * New upstream release
+  * debian/libpurple0.symbols:
+    - Updated
+    - Remove debian revisions from symbols versions
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Fri, 06 Jul 2012 10:59:45 +1200
+
+pidgin (1:2.10.4-0ubuntu1) quantal; urgency=low
+
+  * New upstream release
+  * debian/patches/irc_disable_periodic_who.patch:
+  * debian/patches/70_farstream_rename.patch:
+    - Applied upstream
+
+ -- Robert Ancell <robert.ancell@canonical.com>  Mon, 28 May 2012 17:21:44 +1200
 
 pidgin (1:2.10.3-0ubuntu2) quantal; urgency=low
 
@@ -33,19 +57,11 @@ pidgin (1:2.10.2-1ubuntu2) precise; urgency=low
 
  -- Ken VanDine <ken.vandine@canonical.com>  Wed, 04 Apr 2012 17:02:58 -0400
 
-pidgin (1:2.10.1-1ubuntu1) precise; urgency=low
+pidgin (1:2.10.2-1ubuntu1) precise; urgency=low
 
   * New upstream version based on the Debian update
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Jan 2012 15:46:36 +0100
-
-pidgin (2.10.2-1.1) experimental; urgency=low
-
-  * Non-maintainer upload with Ari approval.
-  * Add debian/patches/port-to-farstream.patch: Use farstream instead of
-    farsight (Closes: #664527)
-
- -- Laurent Bigonville <bigon@debian.org>  Sat, 31 Mar 2012 20:36:59 +0200
 
 pidgin (2.10.2-1) unstable; urgency=medium
 
@@ -54,6 +70,21 @@ pidgin (2.10.2-1) unstable; urgency=medium
     - Fixes a possible remote crash in XMPP (CVE-2012-1178) (Closes: #664030)
 
  -- Ari Pollak <ari@debian.org>  Wed, 14 Mar 2012 21:20:18 -0400
+
+pidgin (1:2.10.1-1ubuntu2) precise; urgency=low
+
+  * debian/control
+    - build depend on farstream instead of farsight, it was renamed upstream
+  * debian/patches/70_farstream_rename.patch
+    - updated for the transition from farsight to farstream
+
+ -- Ken VanDine <ken.vandine@canonical.com>  Mon, 05 Mar 2012 15:13:12 -0500
+
+pidgin (1:2.10.1-1ubuntu1) precise; urgency=low
+
+  * New upstream version based on the Debian update
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 05 Jan 2012 15:46:36 +0100
 
 pidgin (2.10.1-1) unstable; urgency=medium
 
