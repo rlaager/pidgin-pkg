@@ -1,0 +1,14 @@
+=== modified file 'pidgin/gtkdocklet.c'
+Index: pidgin-2.10.2/pidgin/gtkdocklet.c
+===================================================================
+--- pidgin-2.10.2.orig/pidgin/gtkdocklet.c	2012-03-14 06:28:02.000000000 +0100
++++ pidgin-2.10.2/pidgin/gtkdocklet.c	2012-03-16 12:33:53.572065697 +0100
+@@ -841,7 +841,7 @@
+ 
+ 	purple_prefs_add_none(PIDGIN_PREFS_ROOT "/docklet");
+ 	purple_prefs_add_bool(PIDGIN_PREFS_ROOT "/docklet/blink", FALSE);
+-	purple_prefs_add_string(PIDGIN_PREFS_ROOT "/docklet/show", "always");
++	purple_prefs_add_string(PIDGIN_PREFS_ROOT "/docklet/show", "never");
+ 	purple_prefs_connect_callback(docklet_handle, PIDGIN_PREFS_ROOT "/docklet/show",
+ 				    docklet_show_pref_changed_cb, NULL);
+ 

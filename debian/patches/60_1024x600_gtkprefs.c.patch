@@ -1,0 +1,98 @@
+Index: pidgin-2.10.2/pidgin/gtkprefs.c
+===================================================================
+--- pidgin-2.10.2.orig/pidgin/gtkprefs.c	2012-03-14 06:28:02.000000000 +0100
++++ pidgin-2.10.2/pidgin/gtkprefs.c	2012-03-16 12:34:01.108065984 +0100
+@@ -1333,6 +1333,7 @@
+ 	GtkWidget *label;
+ 	GtkSizeGroup *sg;
+ 	GList *names = NULL;
++	GtkWidget *scrolledWindow1024x600;
+ 
+ 	ret = gtk_vbox_new(FALSE, PIDGIN_HIG_CAT_SPACE);
+ 	gtk_container_set_border_width(GTK_CONTAINER(ret), PIDGIN_HIG_BORDER);
+@@ -1408,6 +1409,15 @@
+ 	keyboard_shortcuts(ret);
+ 
+ 	gtk_widget_show_all(ret);
++
++	if (gdk_screen_get_default() != NULL && gdk_screen_get_height(gdk_screen_get_default()) <= 700) {
++		scrolledWindow1024x600 = gtk_scrolled_window_new(NULL,NULL);
++		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),GTK_POLICY_NEVER,GTK_POLICY_AUTOMATIC);
++		gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),ret);
++		ret = scrolledWindow1024x600;
++		gtk_widget_show(ret);
++	}
++
+ 	g_object_unref(sg);
+ 	return ret;
+ }
+@@ -1451,6 +1461,7 @@
+ 	GtkWidget *hbox;
+ 	GtkWidget *checkbox;
+ 	GtkWidget *spin_button;
++	GtkWidget *scrolledWindow1024x600;
+ 
+ 	ret = gtk_vbox_new(FALSE, PIDGIN_HIG_CAT_SPACE);
+ 	gtk_container_set_border_width(GTK_CONTAINER(ret), PIDGIN_HIG_BORDER);
+@@ -1564,6 +1575,14 @@
+ 					 G_CALLBACK(formatting_clear_cb), NULL);
+ 	sample_imhtml = imhtml;
+ 
++	if (gdk_screen_get_default() != NULL && gdk_screen_get_height(gdk_screen_get_default()) <= 700) {
++		scrolledWindow1024x600 = gtk_scrolled_window_new(NULL,NULL);
++		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),GTK_POLICY_NEVER,GTK_POLICY_AUTOMATIC);
++		gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),ret);
++		gtk_widget_show(ret);
++		ret = scrolledWindow1024x600;
++	}
++
+ 	gtk_widget_show(ret);
+ 
+ 	return ret;
+@@ -1929,6 +1948,7 @@
+ 	GtkWidget *ret, *vbox, *hbox, *label, *entry, *browser_button;
+ 	GtkSizeGroup *sg;
+ 	GList *browsers = NULL;
++	GtkWidget *scrolledWindow1024x600;
+ 
+ 	ret = gtk_vbox_new(FALSE, PIDGIN_HIG_CAT_SPACE);
+ 	gtk_container_set_border_width (GTK_CONTAINER (ret), PIDGIN_HIG_BORDER);
+@@ -2014,6 +2034,14 @@
+ 		g_object_unref(sg);
+ 	}
+ 
++	if (gdk_screen_get_default() != NULL && gdk_screen_get_height(gdk_screen_get_default()) <= 700) {
++		scrolledWindow1024x600 = gtk_scrolled_window_new(NULL,NULL);
++		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),GTK_POLICY_NEVER,GTK_POLICY_AUTOMATIC);
++		gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),ret);
++		ret = scrolledWindow1024x600;
++		gtk_widget_show(ret);
++	}
++
+ 	return ret;
+ }
+ #endif /*_WIN32*/
+@@ -2460,6 +2488,7 @@
+ 	int j;
+ 	const char *file;
+ 	char *pref;
++	GtkWidget *scrolledWindow1024x600;
+ #ifndef _WIN32
+ 	GtkWidget *dd;
+ 	GtkWidget *entry;
+@@ -2631,6 +2660,15 @@
+ 	gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 1);
+ 
+ 	gtk_widget_show_all(ret);
++
++	if (gdk_screen_get_default() != NULL && gdk_screen_get_height(gdk_screen_get_default()) <= 700) {
++		scrolledWindow1024x600 = gtk_scrolled_window_new(NULL,NULL);
++		gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),GTK_POLICY_NEVER,GTK_POLICY_AUTOMATIC);
++		gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(scrolledWindow1024x600),ret);
++		ret = scrolledWindow1024x600;
++		gtk_widget_show(ret);
++	}
++
+ 	g_object_unref(sg);
+ 
+ 	return ret;

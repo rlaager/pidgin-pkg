@@ -1,0 +1,9 @@
+Index: pidgin-2.10.6/pidgin.desktop.in
+===================================================================
+--- pidgin-2.10.6.orig/pidgin.desktop.in	2012-07-01 01:54:48.000000000 +0200
++++ pidgin-2.10.6/pidgin.desktop.in	2012-11-16 10:28:42.519561580 +0100
+@@ -8,3 +8,4 @@
+ Terminal=false
+ Type=Application
+ Categories=Network;InstantMessaging;
++X-MessagingMenu-UsesChatSection=true

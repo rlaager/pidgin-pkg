@@ -1,0 +1,13 @@
+Index: pidgin-2.10.2/libpurple/protocols/irc/irc.h
+===================================================================
+--- pidgin-2.10.2.orig/libpurple/protocols/irc/irc.h	2012-03-14 06:28:00.000000000 +0100
++++ pidgin-2.10.2/libpurple/protocols/irc/irc.h	2012-03-16 12:33:51.680065624 +0100
+@@ -30,7 +30,7 @@
+ #include "roomlist.h"
+ #include "sslconn.h"
+ 
+-#define IRC_DEFAULT_SERVER "irc.freenode.net"
++#define IRC_DEFAULT_SERVER "irc.ubuntu.com"
+ #define IRC_DEFAULT_PORT 6667
+ #define IRC_DEFAULT_SSL_PORT 994
+ 
