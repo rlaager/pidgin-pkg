@@ -1,3 +1,13 @@
+pidgin (1:2.10.7-2ubuntu0+pidgin1.13.04) raring; urgency=low
+
+  * Build 2.10.7 for the Pidgin PPA
+    - Merge 2.10.7-2 from Debian and 1:2.10.7-0ubuntu4
+    - debian/control
+      + Set Maintainer to Richard Laager <rlaager@pidgin.im>
+      + Point Vcs-Git & Vcs-Browser to github
+
+ -- Richard Laager <rlaager@pidgin.im>  Sun, 21 Apr 2013 18:10:27 -0500
+
 pidgin (2.10.7-2) unstable; urgency=low
 
   * Fix IRC protocol loading by linking with SASL (Closes: #701541)
