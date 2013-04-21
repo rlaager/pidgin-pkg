@@ -1,3 +1,18 @@
+pidgin (2.10.7-2) unstable; urgency=low
+
+  * Fix IRC protocol loading by linking with SASL (Closes: #701541)
+  * Apply patch from upstream to fix crash in Contact Availability Plugin
+    (Closes: #701544)
+
+ -- Ari Pollak <ari@debian.org>  Sun, 24 Feb 2013 11:13:12 -0500
+
+pidgin (2.10.7-1) unstable; urgency=low
+
+  * Imported Upstream version 2.10.7
+  * Move libpurple0 to section devel, to reflect #700141
+
+ -- Ari Pollak <ari@debian.org>  Sat, 23 Feb 2013 11:32:27 -0500
+
 pidgin (1:2.10.7-0ubuntu4) raring; urgency=low
 
   * Specified multiarch Tcl location, fixing FTBFS.
@@ -28,6 +43,25 @@ pidgin (1:2.10.7-0ubuntu1) raring; urgency=low
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 13 Feb 2013 18:49:58 +0100
 
+pidgin (2.10.6-3) unstable; urgency=high
+
+  * Apply patches from 2.10.7 to fix CVE-2013-0271, CVE-2013-0272,
+    CVE-2013-0273, and CVE-2013-0274
+
+ -- Ari Pollak <ari@debian.org>  Mon, 11 Feb 2013 20:41:21 -0500
+
+pidgin (2.10.6-2) unstable; urgency=low
+
+  * Rebuild with no changes to enable xz compression (Closes: #688692)
+
+ -- Ari Pollak <ari@debian.org>  Tue, 25 Sep 2012 21:42:44 -0400
+
+pidgin (2.10.6-1) unstable; urgency=low
+
+  * Imported Upstream version 2.10.6
+
+ -- Ari Pollak <ari@debian.org>  Fri, 06 Jul 2012 19:17:08 -0400
+
 pidgin (1:2.10.6-0ubuntu4) raring; urgency=low
 
   * debian/patches/pounce-webview.patch (LP: #1026442)
@@ -54,6 +88,12 @@ pidgin (1:2.10.6-0ubuntu1) quantal-proposed; urgency=low
 
  -- Robert Ancell <robert.ancell@canonical.com>  Mon, 09 Jul 2012 09:47:15 +1200
 
+pidgin (2.10.5-1) unstable; urgency=low
+
+  * Imported Upstream version 2.10.5
+
+ -- Ari Pollak <ari@debian.org>  Wed, 04 Jul 2012 13:50:16 -0400
+
 pidgin (1:2.10.5-0ubuntu1) quantal-proposed; urgency=low
 
   * New upstream release
@@ -62,6 +102,23 @@ pidgin (1:2.10.5-0ubuntu1) quantal-proposed; urgency=low
     - Remove debian revisions from symbols versions
 
  -- Robert Ancell <robert.ancell@canonical.com>  Fri, 06 Jul 2012 10:59:45 +1200
+
+pidgin (2.10.4-1.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Build-depends against libfarstream-0.1-dev instead of
+    libgstfarsight0.10-dev (Closes: #664527)
+
+ -- Laurent Bigonville <bigon@debian.org>  Tue, 15 May 2012 12:37:02 +0200
+
+pidgin (2.10.4-1) unstable; urgency=low
+
+  * Imported Upstream version 2.10.4
+    - Fixes a possible XMPP remote crash (CVE-2012-2214)
+    - Fixes a possible MSN remote crash (CVE-2012-2318)
+  * Switch back to farsight, but support for farstream is now present upstream
+
+ -- Ari Pollak <ari@debian.org>  Mon, 07 May 2012 20:14:56 -0400
 
 pidgin (1:2.10.4-0ubuntu1) quantal; urgency=low
 
@@ -86,6 +143,14 @@ pidgin (1:2.10.3-0ubuntu1) precise; urgency=low
   * update to new stable release, fixes (LP: #964210)
 
  -- Alexander Fougner <fougner89@gmail.com>  Fri, 06 Apr 2012 10:03:13 +0200
+
+pidgin (2.10.2-1.1) experimental; urgency=low
+
+  * Non-maintainer upload with Ari approval.
+  * Add debian/patches/port-to-farstream.patch: Use farstream instead of
+    farsight (Closes: #664527)
+
+ -- Laurent Bigonville <bigon@debian.org>  Sat, 31 Mar 2012 20:36:59 +0200
 
 pidgin (1:2.10.2-1ubuntu2) precise; urgency=low
 

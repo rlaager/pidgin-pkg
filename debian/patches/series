@@ -8,4 +8,4 @@
 xmessagingmenu.patch
 pounce-webview.patch
 git_pidgin-fix-irc.patch
-hg_no_cap_segfault.patch
+cap-crash.patch
