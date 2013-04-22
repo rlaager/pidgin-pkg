@@ -1,12 +1,15 @@
-pidgin (1:2.10.7-2ubuntu0+pidgin1.13.04) raring; urgency=low
+pidgin (1:2.10.7-2ubuntu0+pidgin1.11.10) oneiric; urgency=low
 
   * Build 2.10.7 for the Pidgin PPA
     - Merge 2.10.7-2 from Debian and 1:2.10.7-0ubuntu4
     - debian/control
       + Set Maintainer to Richard Laager <rlaager@pidgin.im>
       + Point Vcs-Git & Vcs-Browser to github
+      + Allow libgstfarsight0.10-dev as an alternative to libfarstream-0.1-dev
+      + Relax the network-manager-dev Build-Dep back to >= 0.5.0
+      + Remove the Conflicts: network-manager (<< 0.9.0)
 
- -- Richard Laager <rlaager@pidgin.im>  Sun, 21 Apr 2013 18:10:27 -0500
+ -- Richard Laager <rlaager@pidgin.im>  Sun, 21 Apr 2013 19:48:59 -0500
 
 pidgin (2.10.7-2) unstable; urgency=low
 
