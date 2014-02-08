@@ -1,4 +1,4 @@
-pidgin (1:2.10.9-0ubuntu1+pidgin1.14.04) trusty; urgency=low
+pidgin (1:2.10.9-0ubuntu1+pidgin1.13.10) saucy; urgency=low
 
   * Build 2.10.9 for the Pidgin PPA
     - Merge 2.10.9-1 from Debian and 1:2.10.9-0ubuntu1
@@ -6,7 +6,7 @@ pidgin (1:2.10.9-0ubuntu1+pidgin1.14.04) trusty; urgency=low
       + Set Maintainer to Richard Laager <rlaager@pidgin.im>
       + Point Vcs-Git & Vcs-Browser to github
 
- -- Richard Laager <rlaager@pidgin.im>  Sat, 08 Feb 2014 10:34:50 -0600
+ -- Richard Laager <rlaager@pidgin.im>  Sat, 08 Feb 2014 11:09:11 -0600
 
 pidgin (1:2.10.9-0ubuntu1) trusty; urgency=medium
 
