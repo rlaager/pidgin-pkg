@@ -17,12 +17,12 @@ LDFLAGS = -Wl,--as-needed
 DEB_CONFIGURE_EXTRA_FLAGS = --disable-gevolution \
 	    --enable-cap --with-system-ssl-certs=/etc/ssl/certs \
 	    --enable-perl --with-zephyr=/usr --enable-dbus --enable-gnutls=no \
-	    --enable-nss=yes --enable-cyrus-sasl --enable-vv \
+	    --enable-nss=yes --enable-cyrus-sasl --enable-vv --enable-farsight \
 	    --enable-tcl --enable-tk \
 	    --with-tclconfig=/usr/lib/$(DEB_HOST_MULTIARCH) \
 	    --with-dynamic-prpls=bonjour,gg,irc,jabber,msn,myspace,mxit,novell,oscar,sametime,simple,yahoo,zephyr # disable silc
 ifeq ($(DEB_BUILD_ARCH_OS),linux)
-  DEB_CONFIGURE_EXTRA_FLAGS += --enable-nm
+  auto DEB_CONFIGURE_EXTRA_FLAGS += --enable-nm
 else
   DEB_CONFIGURE_EXTRA_FLAGS += --disable-nm
 endif

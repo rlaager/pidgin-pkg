@@ -7,5 +7,4 @@
 60_1024x600_gtkprefs.c.patch
 xmessagingmenu.patch
 pounce-webview.patch
-git_pidgin-fix-irc.patch
-cap-crash.patch
+hg-remove-SIGCHLD-handler.patch
