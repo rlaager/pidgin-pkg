@@ -46,7 +46,7 @@ AC_PREREQ([2.50])
 m4_define([purple_lt_current], [10])
 m4_define([purple_major_version], [2])
 m4_define([purple_minor_version], [10])
-m4_define([purple_micro_version], [2])
+m4_define([purple_micro_version], [9])
 m4_define([purple_version_suffix], [])
 m4_define([purple_version],
           [purple_major_version.purple_minor_version.purple_micro_version])
@@ -55,7 +55,7 @@ m4_define([purple_display_version], purple_version[]m4_ifdef([purple_version_suf
 m4_define([gnt_lt_current], [8])
 m4_define([gnt_major_version], [2])
 m4_define([gnt_minor_version], [8])
-m4_define([gnt_micro_version], [9])
+m4_define([gnt_micro_version], [10])
 m4_define([gnt_version_suffix], [])
 m4_define([gnt_version],
           [gnt_major_version.gnt_minor_version.gnt_micro_version])
@@ -304,7 +304,7 @@ if test x$enable_i18n = xyes; then
 	GETTEXT_PACKAGE=pidgin
 	AC_SUBST(GETTEXT_PACKAGE)
 
-	ALL_LINGUAS="af am ar az be@latin bg bn bn_IN bs ca ca@valencia cs da de dz el en_AU en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu hy id it ja ka km kn ko ku lo lt mai mhr mk mn mr ms_MY my_MM nb ne nl nn oc or pa pl pt_BR pt ps ro ru si sk sl sq sr sr@latin sv sw ta te th tr uk ur vi xh zh_CN zh_HK zh_TW"
+	ALL_LINGUAS="af am ar ast az be@latin bg bn bn_IN bs ca ca@valencia cs da de dz el en_AU en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr hu hy id it ja ka km kn ko ku lo lt mai mhr mk mn mr ms_MY my_MM nb ne nl nn oc or pa pl pt_BR pt ps ro ru si sk sl sq sr sr@latin sv sw ta te th tr uk ur vi xh zh_CN zh_HK zh_TW"
 	AM_GLIB_GNU_GETTEXT
 
 	dnl If we don't have msgfmt, then po/ is going to fail -- ensure that
@@ -786,20 +786,26 @@ else
 fi
 
 dnl #######################################################################
-dnl # Check for Farsight
+dnl # Check for Farstream
 dnl #######################################################################
-AC_ARG_ENABLE(farsight,
-	[AC_HELP_STRING([--disable-farsight], [compile without farsight support])],
-	enable_farsight="$enableval", enable_farsight="yes")
-if test "x$enable_farsight" != "xno"; then
-	PKG_CHECK_MODULES(FARSIGHT, [farsight2-0.10 >= 0.0.9], [
-		AC_DEFINE(USE_FARSIGHT, 1, [Use Farsight for voice and video])
-		AC_SUBST(FARSIGHT_CFLAGS)
-		AC_SUBST(FARSIGHT_LIBS)
-	], [
-		enable_farsight="no"
-	])
-fi
+AC_ARG_ENABLE(farstream,
+	[AC_HELP_STRING([--disable-farstream], [compile without farstream support])],
+	enable_farstream="$enableval", enable_farstream="yes")
+if test "x$enable_farstream" != "xno"; then
+	PKG_CHECK_MODULES(FARSTREAM, [farstream-0.1], [
+		AC_SUBST(FARSTREAM_CFLAGS)
+		AC_SUBST(FARSTREAM_LIBS)
+ 	], [
+		# Try farsight.
+		PKG_CHECK_MODULES(FARSTREAM, [farsight2-0.10 >= 0.0.9], [
+		        AC_DEFINE(HAVE_FARSIGHT, 1, [Use Farsight instead of Farstream])
+			AC_SUBST(FARSTREAM_CFLAGS)
+			AC_SUBST(FARSTREAM_LIBS)
+		], [
+		        enable_farstream="no"
+		])
+ 	])
+ fi
 
 dnl #######################################################################
 dnl # Check for Voice and Video support
@@ -808,20 +814,20 @@ AC_ARG_ENABLE(vv,
 	[AC_HELP_STRING([--disable-vv], [compile without voice and video support])],
 	enable_vv="$enableval", enable_vv="yes")
 if test "x$enable_vv" != "xno"; then
-	if test "x$enable_gstreamer" != "xno" -a "x$enable_gstinterfaces" != "xno" -a "x$enable_farsight" != "xno"; then
+	if test "x$enable_gstreamer" != "xno" -a "x$enable_gstinterfaces" != "xno" -a "x$enable_farstream" != "xno"; then
 		AC_DEFINE(USE_VV, 1, [Use voice and video])
 	else
 		enable_vv="no"
 		if test "x$force_deps" = "xyes"; then
 			AC_MSG_ERROR([
 Dependencies for voice/video were not met.
-Install the necessary gstreamer and farsight packages first.
+Install the necessary gstreamer and farstream packages first.
 Or use --disable-vv if you do not need voice/video support.
 			])
 		fi
 	fi
 fi
-AM_CONDITIONAL(USE_VV, test "x$enable_gstreamer" != "xno" -a "x$enable_gstinterfaces" != "xno" -a "x$enable_farsight" != "xno")
+AM_CONDITIONAL(USE_VV, test "x$enable_gstreamer" != "xno" -a "x$enable_gstinterfaces" != "xno" -a "x$enable_farstream" != "xno")
 
 dnl #######################################################################
 dnl # Check for Internationalized Domain Name support
@@ -1179,7 +1185,7 @@ for i in $STATIC_PRPLS ; do
 		simple)		static_simple=yes ;;
 		yahoo)		static_yahoo=yes ;;
 		zephyr)		static_zephyr=yes ;;
-		*)			echo "Invalid static protocol $i!!" ; exit ;;
+		*)			echo "Invalid static protocol $i!!" ; exit 1 ;;
 	esac
 done
 AM_CONDITIONAL(STATIC_BONJOUR, test "x$static_bonjour" = "xyes")
@@ -1237,7 +1243,7 @@ for i in $DYNAMIC_PRPLS ; do
 		simple)		dynamic_simple=yes ;;
 		yahoo)		dynamic_yahoo=yes ;;
 		zephyr)		dynamic_zephyr=yes ;;
-		*)			echo "Invalid dynamic protocol $i!!" ; exit ;;
+		*)			echo "Invalid dynamic protocol $i!!" ; exit 1 ;;
 	esac
 done
 
@@ -1385,6 +1391,26 @@ else
 fi
 
 dnl #######################################################################
+dnl # Check for Unity and Messaging Menu
+dnl #######################################################################
+AC_ARG_ENABLE(unity, [AC_HELP_STRING([--enable-unity],
+	[compile with support for unity integration plugin])], enable_unity="$enableval", enable_unity="no")
+if test "$enable_unity" = yes; then
+	PKG_CHECK_MODULES(UNITY, [unity >= 6.8 messaging-menu >= 12.10], , [
+		AC_MSG_RESULT(no)
+		AC_MSG_ERROR([
+You must have libunity9 >= 6.8 and libmessaging-menu >= 12.10 to build the unity integration plugin.
+	])])
+	USES_MM_CHAT_SECTION="X-MessagingMenu-UsesChatSection=true"
+	AC_SUBST(UNITY_CFLAGS)
+	AC_SUBST(UNITY_LIBS)
+	AC_SUBST(USES_MM_CHAT_SECTION)
+else
+	enable_unity=no
+fi
+AM_CONDITIONAL(ENABLE_UNITY, [test "x$enable_unity" = "xyes"])
+
+dnl #######################################################################
 dnl # Check for Python
 dnl #######################################################################
 
@@ -1487,13 +1513,13 @@ dnl Check for Python headers (currently useful only for libgnt)
 dnl (Thanks to XChat)
 if test "x$enable_consoleui" = "xyes" -a ! -z "$PYTHON" -a x"$PYTHON" != x"no" ; then
 	AC_MSG_CHECKING(for Python compile flags)
-	PY_PREFIX=`$PYTHON -c 'import sys ; print sys.prefix'`
-	PY_EXEC_PREFIX=`$PYTHON -c 'import sys ; print sys.exec_prefix'`
+	PY_PREFIX=`$PYTHON -c 'import sys ; sys.stdout.write(sys.prefix)'`
+	PY_EXEC_PREFIX=`$PYTHON -c 'import sys ; sys.stdout.write(sys.exec_prefix)'`
 	changequote(<<, >>)dnl
-	PY_VERSION=`$PYTHON -c 'import sys ; print sys.version[0:3]'`
-	PY_MAJOR=`$PYTHON -c 'import sys ; print sys.version[0:2]'`
+	PY_VERSION=`$PYTHON -c 'import sys ; sys.stdout.write(sys.version[0:3])'`
+	PY_MAJOR=`$PYTHON -c 'import sys ; sys.stdout.write(sys.version[0:2])'`
 	changequote([, ])dnl
-	if test -f $PY_PREFIX/include/python$PY_VERSION/Python.h -a "$PY_MAJOR" = "2."; then
+	if test -f $PY_PREFIX/include/python$PY_VERSION/Python.h; then
 		AC_MSG_RESULT()
 		AC_CHECK_LIB(pthread, pthread_create, )
 		AC_CHECK_LIB(util, openpty, )
@@ -1765,7 +1791,7 @@ if test "x$enable_gnutls" != "xno"; then
 
 		AC_CACHE_CHECK([for GnuTLS libraries], ac_cv_gnutls_libs,
 		[
-			LIBS="$LIBS $with_gnutls_libs -lgnutls -lgcrypt"
+			LIBS="$LIBS $with_gnutls_libs -lgnutls"
 			AC_TRY_LINK_FUNC(gnutls_init, ac_cv_gnutls_libs="yes", ac_cv_gnutls_libs="no")
 			LIBS="$LIBS_save"
 		])
@@ -1774,7 +1800,7 @@ if test "x$enable_gnutls" != "xno"; then
 			AC_DEFINE(HAVE_GNUTLS, 1, [Define if you have GnuTLS])
 			AC_DEFINE(HAVE_SSL)
 			msg_gnutls="GnuTLS"
-			GNUTLS_LIBS="$with_gnutls_libs -lgnutls -lgcrypt"
+			GNUTLS_LIBS="$with_gnutls_libs -lgnutls"
 
 			enable_gnutls="yes"
 		else
@@ -2295,12 +2321,12 @@ fi
 AC_SUBST(PLUGINS_DEFINE)
 
 dnl #######################################################################
-dnl # Check for Cyrus-SASL (for Jabber)
+dnl # Check for Cyrus-SASL (for xmpp/irc)
 dnl #######################################################################
 dnl AC_CHECK_SIZEOF(short)
 AC_CHECK_FUNCS(snprintf connect)
 AC_SUBST(SASL_LIBS)
-AC_ARG_ENABLE(cyrus-sasl, AC_HELP_STRING([--enable-cyrus-sasl], [enable Cyrus SASL support for jabberd]), enable_cyrus_sasl=$enableval, enable_cyrus_sasl=no)
+AC_ARG_ENABLE(cyrus-sasl, AC_HELP_STRING([--enable-cyrus-sasl], [enable Cyrus SASL support for xmpp/irc]), enable_cyrus_sasl=$enableval, enable_cyrus_sasl=no)
 if test "x$enable_cyrus_sasl" = "xyes" ; then
 	AC_CHECK_LIB(sasl2, sasl_client_init, [
 			AM_CONDITIONAL(USE_CYRUS_SASL, true)
@@ -2598,6 +2624,7 @@ AC_CONFIG_FILES([Makefile
 		   finch/libgnt/wms/Makefile
 		   finch/plugins/Makefile
 		   po/Makefile.in
+		   pidgin.desktop.in
 		   pidgin.spec
 		  ])
 AC_OUTPUT
@@ -2639,6 +2666,7 @@ echo Use XScreenSaver Extension.... : $enable_screensaver
 echo Use X Session Management...... : $enable_sm
 echo Use startup notification...... : $enable_startup_notification
 echo Build with GtkSpell support... : $enable_gtkspell
+echo Build Unity integration plugin.: $enable_unity
 echo
 echo Build with plugin support..... : $enable_plugins
 echo Build with Mono support....... : $enable_mono
