@@ -1,4 +1,4 @@
-pidgin (1:2.10.10-1ubuntu0+pidgin5.14.10) utopic; urgency=low
+pidgin (1:2.10.10-1ubuntu0+pidgin9.14.04) trusty; urgency=low
 
   * Build 2.10.10 for the Pidgin PPA
     - Merge 2.10.10-1 from Debian and 1:2.10.9-0ubuntu7.1
@@ -7,7 +7,7 @@ pidgin (1:2.10.10-1ubuntu0+pidgin5.14.10) utopic; urgency=low
       + Point Vcs-Git & Vcs-Browser to github
       + Downgrade the libgadu-dev dependency
 
- -- Richard Laager <rlaager@wiktel.com>  Mon, 03 Nov 2014 03:06:47 -0600
+ -- Richard Laager <rlaager@pidgin.im>  Mon, 03 Nov 2014 14:08:40 -0600
 
 pidgin (2.10.10-1) unstable; urgency=high
 
