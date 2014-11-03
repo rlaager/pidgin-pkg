@@ -1,3 +1,71 @@
+pidgin (1:2.10.9-0ubuntu7.1) utopic-security; urgency=medium
+
+  * SECURITY UPDATE: insufficient ssl certificate validation
+    - debian/patches/CVE-2014-3694.patch: fix basic constraints checking in
+      libpurple/certificate.c, libpurple/certificate.h,
+      libpurple/plugins/ssl/ssl-gnutls.c, libpurple/plugins/ssl/ssl-nss.c.
+    - CVE-2014-3694
+  * SECURITY UPDATE: denial of service via malformed MXit emoticon response
+    - debian/patches/CVE-2014-3695.patch: properly check lengths in
+      libpurple/protocols/mxit/markup.c.
+    - CVE-2014-3695
+  * SECURITY UPDATE: denial of service via malformed Groupwise message
+    - debian/patches/CVE-2014-3696.patch: check sizes in
+      libpurple/protocols/novell/nmevent.c.
+    - CVE-2014-3696
+  * SECURITY UPDATE: XMPP information leak
+    - debian/patches/CVE-2014-3698.patch: fix leaks in
+      libpurple/protocols/jabber/jutil.c.
+    - CVE-2014-3698
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 27 Oct 2014 11:29:40 -0400
+
+pidgin (1:2.10.9-0ubuntu7) utopic; urgency=medium
+
+  * Add dialpad support.
+
+ -- Dimitri John Ledkov <dimitri.j.ledkov@linux.intel.com>  Thu, 18 Sep 2014 18:11:48 +0100
+
+pidgin (1:2.10.9-0ubuntu6) utopic; urgency=medium
+
+  * debian/control, debian/rules, debian/prefs.xml:
+    Build with --enable-unity. (LP: #1362368)
+
+ -- Tomáš Hnyk (sup) <tomashnyk@gmail.com>  Tue, 02 Sep 2014 11:37:59 +0200
+
+pidgin (1:2.10.9-0ubuntu5) utopic; urgency=medium
+
+  * Rebuild for Perl 5.20.0.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Thu, 21 Aug 2014 13:40:17 +0100
+
+pidgin (1:2.10.9-0ubuntu4) utopic; urgency=medium
+
+  * SECURITY UPDATE: memory corruption via crafted message from gadu-gadu
+    file relay server
+    - debian/patches/CVE-2014-3775.patch: check relay_count in
+      libpurple/protocols/gg/lib/dcc7.c
+    - CVE-2014-3775
+  * debian/rules: replace spaces with tabs and remove extra keyword to fix
+    FTBFS
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Tue, 20 May 2014 11:06:01 -0400
+
+pidgin (1:2.10.9-0ubuntu3) trusty; urgency=medium
+
+  * debian/patches/xmessagingmenu.patch: change the .in file as well
+    so the changes are not overwriten when regenerating
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 09 Apr 2014 19:00:52 +0200
+
+pidgin (1:2.10.9-0ubuntu2) trusty; urgency=medium
+
+  * debian/control: remove libgadu-dev from Build-Depends. Pidgin has been
+    using its own libgadu since at least precise, and the useless
+    dependency is pulling libgadu into main.
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Mon, 10 Feb 2014 10:15:42 -0500
+
 pidgin (1:2.10.9-0ubuntu1) trusty; urgency=medium
 
   * New upstream version, thanks Jackson Doak (lp: #1275113)

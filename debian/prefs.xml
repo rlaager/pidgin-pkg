@@ -26,6 +26,8 @@
                                 <pref name='browser' type='string' value='custom' />
                         </pref>
                         <pref name='plugins'>
+                            <pref name='loaded' type='pathlist'>
+                                <item value='/usr/lib/pidgin/unity.so'/>
                                 <item value='/usr/lib/pidgin/notify.so' />
                         </pref>
                 </pref>

@@ -8,3 +8,9 @@
 xmessagingmenu.patch
 pounce-webview.patch
 hg-remove-SIGCHLD-handler.patch
+CVE-2014-3775.patch
+dtmf-pad.patch
+CVE-2014-3694.patch
+CVE-2014-3695.patch
+CVE-2014-3696.patch
+CVE-2014-3698.patch
