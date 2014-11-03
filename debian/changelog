@@ -1,4 +1,4 @@
-pidgin (1:2.10.10-1ubuntu0+pidgin9.14.04) trusty; urgency=low
+pidgin (1:2.10.10-1ubuntu0+pidgin9.12.04) precise; urgency=low
 
   * Build 2.10.10 for the Pidgin PPA
     - Merge 2.10.10-1 from Debian and 1:2.10.9-0ubuntu7.1
@@ -6,8 +6,11 @@ pidgin (1:2.10.10-1ubuntu0+pidgin9.14.04) trusty; urgency=low
       + Set Maintainer to Richard Laager <rlaager@pidgin.im>
       + Point Vcs-Git & Vcs-Browser to github
       + Downgrade the libgadu-dev dependency
+      + Drop libmessaging-menu-dev dependency
+    - debian/rules
+      + Change --enable-unity to --disable-unity
 
- -- Richard Laager <rlaager@pidgin.im>  Mon, 03 Nov 2014 14:08:40 -0600
+ -- Richard Laager <rlaager@pidgin.im>  Mon, 03 Nov 2014 12:45:46 -0600
 
 pidgin (2.10.10-1) unstable; urgency=high
 
