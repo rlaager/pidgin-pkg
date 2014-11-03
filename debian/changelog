@@ -1,3 +1,24 @@
+pidgin (1:2.10.10-1ubuntu0+pidgin5.14.10) utopic; urgency=low
+
+  * Build 2.10.10 for the Pidgin PPA
+    - Merge 2.10.10-1 from Debian and 1:2.10.9-0ubuntu7.1
+    - debian/control
+      + Set Maintainer to Richard Laager <rlaager@pidgin.im>
+      + Point Vcs-Git & Vcs-Browser to github
+      + Downgrade the libgadu-dev dependency
+
+ -- Richard Laager <rlaager@wiktel.com>  Mon, 03 Nov 2014 03:06:47 -0600
+
+pidgin (2.10.10-1) unstable; urgency=high
+
+  * Imported Upstream version 2.10.10
+    * Fixes security issues: CVE-2014-3694, CVE-2014-3695, CVE-2014-3696,
+      CVE-2014-3697, CVE-2014-3698
+  * Update debian/watch to check upstream signature (Closes: #764768)
+  * Build with system libgadu
+
+ -- Ari Pollak <ari@debian.org>  Thu, 16 Oct 2014 21:01:32 -0400
+
 pidgin (1:2.10.9-0ubuntu7.1) utopic-security; urgency=medium
 
   * SECURITY UPDATE: insufficient ssl certificate validation
